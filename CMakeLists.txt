@@ -1,19 +1,14 @@
-#cmake_minimum_required(VERSION 3.15)
-#project(Estudo_Dirigido_04)
-#
-#set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#
-#add_subdirectory(source)
-#add_subdirectory(test)
-#add_subdirectory(third_party/googletest)
-#
-#add_library(my_library source/main.cpp)
 cmake_minimum_required(VERSION 3.15)
 project(Estudo_Dirigido_04)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Definindo o modo Debug
+set(CMAKE_BUILD_TYPE Debug)
+
+# Adiciona as informações de depuração para todas as compilações
+add_compile_options(-g)
 
 include(FetchContent)
 

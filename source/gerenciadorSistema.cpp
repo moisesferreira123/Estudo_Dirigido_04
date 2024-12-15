@@ -100,7 +100,7 @@ void gerenciadorSistema::listarProdutosDoCatalogo(){
   }else{
     std::map<int, Produto> catalogoProdutos = catalogo.listarProdutos();
     for(auto produto:catalogoProdutos){
-      std::cout << produto.second.obterId() << " " << produto.second.obterNome() << " R$" << std::fixed << std::setprecision(2) << produto.second.obterPreco() << "\n";
+      std::cout << "Id: " << produto.second.obterId() << " Nome: " << produto.second.obterNome() << " Preço: R$" << std::fixed << std::setprecision(2) << produto.second.obterPreco() << "\n";
     }
   }
 }
@@ -178,7 +178,7 @@ void gerenciadorSistema::mostrarListaDeProdutosdoPedido(){
     return;
   }
   for(auto produto:listaDeProdutos){
-    std::cout << produto.obterId() << " " << produto.obterNome() << " " << produto.obterPreco() << "\n";
+    std::cout << "Id: " << produto.obterId() << " Nome: " << produto.obterNome() << " Preço: R$" << produto.obterPreco() << "\n";
   }
 }
 
