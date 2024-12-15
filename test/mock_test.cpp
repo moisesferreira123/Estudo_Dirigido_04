@@ -10,37 +10,37 @@ TEST(CenarioCompletoTeste, TesteDeIntegracao){
   Produto produto1(1,"Sabonete",2.59), produto2(2,"Shampoo",15), produto3(3,"Carne",40);
   std::map<int, Produto> produtos = {{1,produto1}};
 
-  EXPECT_CALL(mockcatalogo, adicionarProduto(produto1, ::testing::_))
+  EXPECT_CALL(mockcatalogo, adicionarProduto(produto1))
     .Times(1)
     .WillOnce(Return(true));
 
-  EXPECT_CALL(mockcatalogo, adicionarProduto(produto2,::testing::_))
+  EXPECT_CALL(mockcatalogo, adicionarProduto(produto2))
     .Times(1)
     .WillOnce(Return(true));
 
-  EXPECT_CALL(mockcatalogo, adicionarProduto(produto3, ::testing::_))
+  EXPECT_CALL(mockcatalogo, adicionarProduto(produto3))
     .Times(1)
     .WillOnce(Return(true));
   
   // Configurando o mock para refletir dinamicamente as alterações no mapa.
-  EXPECT_CALL(mockcatalogo, listarProdutos(testeDesligadoMock))
+  EXPECT_CALL(mockcatalogo, listarProdutos())
     .WillRepeatedly(::testing::Invoke([&produtos]() { return produtos; }));
 
-  EXPECT_CALL(mockcatalogo, buscarProdutoPorId(1, ::testing::_))
+  EXPECT_CALL(mockcatalogo, buscarProdutoPorId(1))
     .Times(2)
     .WillRepeatedly(Return(produto1));
 
-  EXPECT_CALL(mockcatalogo, buscarProdutoPorId(2, ::testing::_))
+  EXPECT_CALL(mockcatalogo, buscarProdutoPorId(2))
     .Times(2)
     .WillRepeatedly(Return(produto2));
   
-  EXPECT_CALL(mockcatalogo, buscarProdutoPorId(3, ::testing::_))
+  EXPECT_CALL(mockcatalogo, buscarProdutoPorId(3))
     .Times(2)
     .WillRepeatedly(Return(produto3));
 
   // Testando a adição de produtos no catálogo
-  mockcatalogo.adicionarProduto(produto1, testeDesligadoMock);
-  auto resultado = mockcatalogo.listarProdutos(testeDesligadoMock);
+  mockcatalogo.adicionarProduto(produto1);
+  auto resultado = mockcatalogo.listarProdutos();
 
   EXPECT_EQ(resultado.size(), 1);
 
@@ -48,9 +48,9 @@ TEST(CenarioCompletoTeste, TesteDeIntegracao){
   EXPECT_EQ(resultado[1].obterNome(),"Sabonete");
   EXPECT_NEAR(resultado[1].obterPreco(),2.59,TOLERANCIA_PARA_DOUBLE);
 
-  mockcatalogo.adicionarProduto(produto2, testeDesligadoMock);
+  mockcatalogo.adicionarProduto(produto2);
   produtos.insert({2,produto2});
-  resultado = mockcatalogo.listarProdutos(testeDesligadoMock);
+  resultado = mockcatalogo.listarProdutos();
 
   EXPECT_EQ(resultado.size(), 2);
 
@@ -58,9 +58,9 @@ TEST(CenarioCompletoTeste, TesteDeIntegracao){
   EXPECT_EQ(resultado[2].obterNome(),"Shampoo");
   EXPECT_NEAR(resultado[2].obterPreco(),15,TOLERANCIA_PARA_DOUBLE);
 
-  mockcatalogo.adicionarProduto(produto3, testeDesligadoMock);
+  mockcatalogo.adicionarProduto(produto3);
   produtos.insert({3,produto3});
-  resultado = mockcatalogo.listarProdutos(testeDesligadoMock);
+  resultado = mockcatalogo.listarProdutos();
 
   EXPECT_EQ(resultado.size(), 3);
 
@@ -72,10 +72,10 @@ TEST(CenarioCompletoTeste, TesteDeIntegracao){
   // Testando a adição de produtos no pedido
   Pedido pedido("Jonas",mockcatalogo);
 
-  pedido.adicionarProduto(produto1, testeDesligadoMock);
-  pedido.adicionarProduto(produto1, testeDesligadoMock);
-  pedido.adicionarProduto(produto2, testeDesligadoMock);
-  pedido.adicionarProduto(produto2, testeDesligadoMock);
+  pedido.adicionarProduto(produto1);
+  pedido.adicionarProduto(produto1);
+  pedido.adicionarProduto(produto2);
+  pedido.adicionarProduto(produto2);
 
   auto resultado2 = pedido.retornarListaDeProdutos();
   
@@ -102,8 +102,8 @@ TEST(CenarioCompletoTeste, TesteDeIntegracao){
   EXPECT_NEAR(pedido.calcularTotal(testeDesligadoMock), 35.18, TOLERANCIA_PARA_DOUBLE);
 
   // Testando a adição de mais dois produtos no pedido.
-  pedido.adicionarProduto(produto3,testeDesligadoMock);
-  pedido.adicionarProduto(produto3,testeDesligadoMock);
+  pedido.adicionarProduto(produto3);
+  pedido.adicionarProduto(produto3);
 
   auto resultado3 = pedido.retornarListaDeProdutos();
 

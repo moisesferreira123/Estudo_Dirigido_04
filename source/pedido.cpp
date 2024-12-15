@@ -1,13 +1,12 @@
 #include "pedido.h"
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
-#include "loggerManager.h"
 #include <iomanip>
 
 #define VALOR_MAXIMO_QUE_NAO_RECEBE_DESCONTO 100
 
-void Pedido::adicionarProduto(Produto produto, bool testeDesligado){
-  if(produto == catalogo.buscarProdutoPorId(produto.obterId(), testeDesligado)){
+void Pedido::adicionarProduto(Produto produto){
+  if(produto == catalogo.buscarProdutoPorId(produto.obterId())){
     listaDeProdutos.push_back(produto);
   }
 }

@@ -18,7 +18,7 @@ class Pedido {
     
     Pedido(std::string clienteC, Catalogo &catalogoC) : cliente(clienteC), catalogo(catalogoC) {}
 
-    void adicionarProduto(Produto produto, bool testeDesligado = true);
+    void adicionarProduto(Produto produto);
 
     double calcularTotal(bool testeDesligado = true);
 

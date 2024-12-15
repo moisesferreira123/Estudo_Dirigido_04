@@ -10,6 +10,10 @@ void gerenciadorSistema::obterEscolhaDoUsuario(){
   std::cin >> opcao;
   if(std::cin.fail()){
     opcao = 0;
+    // Limpa estado de erro.
+    std::cin.clear();
+    // Descarta a entrada inválida no buffer;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
 }
 
@@ -96,7 +100,7 @@ void gerenciadorSistema::listarProdutosDoCatalogo(){
   }else{
     std::map<int, Produto> catalogoProdutos = catalogo.listarProdutos();
     for(auto produto:catalogoProdutos){
-      std::cout << produto.second.obterId() << " " << produto.second.obterNome() << " " << produto.second.obterPreco() << "\n";
+      std::cout << produto.second.obterId() << " " << produto.second.obterNome() << " R$" << std::fixed << std::setprecision(2) << produto.second.obterPreco() << "\n";
     }
   }
 }
@@ -169,6 +173,10 @@ void gerenciadorSistema::mostrarValorTotalDoPedido(){
 
 void gerenciadorSistema::mostrarListaDeProdutosdoPedido(){
   std::vector<Produto> listaDeProdutos = pedido[0].retornarListaDeProdutos();
+  if(listaDeProdutos.empty()){
+    std::cout << "Não há nenhum produto na lista de pedidos.\n";
+    return;
+  }
   for(auto produto:listaDeProdutos){
     std::cout << produto.obterId() << " " << produto.obterNome() << " " << produto.obterPreco() << "\n";
   }
