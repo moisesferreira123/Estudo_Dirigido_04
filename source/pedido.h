@@ -27,6 +27,8 @@ class Pedido {
     size_t quantidadeProdutos();
 
     std::vector<Produto> retornarListaDeProdutos();
+
+    
 };
 
 #endif

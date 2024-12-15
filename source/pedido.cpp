@@ -7,18 +7,8 @@
 #define VALOR_MAXIMO_QUE_NAO_RECEBE_DESCONTO 100
 
 void Pedido::adicionarProduto(Produto produto, bool testeDesligado){
-  static auto logger = loggerManager::obterLogger();
   if(produto == catalogo.buscarProdutoPorId(produto.obterId(), testeDesligado)){
     listaDeProdutos.push_back(produto);
-    if(testeDesligado){
-      spdlog::info("Produto foi adicionado com sucesso ao pedido.");
-      logger->info("Produto foi adicionado com sucesso ao pedido.");
-    } 
-  }else{
-    if(testeDesligado){
-      spdlog::error("Esse produto não está presente no catálogo. Portanto, o produto não foi adicionado na lista de pedidos.");
-      logger->error("Esse produto não está presente no catálogo. Portanto, o produto não foi adicionado na lista de pedidos.");
-    }
   }
 }
 

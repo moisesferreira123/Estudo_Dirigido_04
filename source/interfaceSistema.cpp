@@ -23,7 +23,7 @@ void interfaceSistema::imprimirInterfaceAtual(int interfaceAtual){
     std::cout << "6) Cancelar pedido\n";
     std::cout << "7) Finalizar pedido\n";
     std::cout << "8) Sair da loja virtual\n";
-  }else{
+  }else if(interfaceAtual == 3){
     std::cout << "1) Pague o pedido\n";
     std::cout << "2) Volte\n";
   }

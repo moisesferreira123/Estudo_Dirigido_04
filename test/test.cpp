@@ -41,12 +41,14 @@ TEST(CatalogoTeste, TentandoAdicionarProdutosRepetidos){
   
   Produto produto1(1,"Sabonete",2.59);
 
-  catalogo.adicionarProduto(produto1, testeDesligado);
+  bool adicionou = catalogo.adicionarProduto(produto1, testeDesligado);
   std::map<int, Produto> produtos = {{1,produto1}};
+  EXPECT_EQ(adicionou,true);
   EXPECT_EQ(catalogo.quantidadeProdutos(),1);
   EXPECT_EQ(catalogo.listarProdutos(testeDesligado),produtos);
   
-  catalogo.adicionarProduto(produto1,testeDesligado);
+  adicionou = catalogo.adicionarProduto(produto1,testeDesligado);
+  EXPECT_EQ(adicionou,false);
   EXPECT_EQ(catalogo.quantidadeProdutos(),1);
   EXPECT_EQ(catalogo.listarProdutos(testeDesligado),produtos);
 }

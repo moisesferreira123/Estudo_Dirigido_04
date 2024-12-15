@@ -11,8 +11,11 @@ class gerenciadorSistema {
     std::vector<Pedido> pedido;
     int opcao{0};
     int interfaceAtual{1};
+    bool saidaDoPrograma{false};
   public:
-    void escolhaDoUsuario(int opcao, int interfaceAtual);
+    void obterEscolhaDoUsuario();
+
+    void escolhaDoUsuario();
 
     int retornarInterfaceAtual();
 
@@ -24,7 +27,7 @@ class gerenciadorSistema {
 
     void realizarPedido();
 
-    void adicionarProdutoAoPedido();
+    void adicionarProdutoAoPedidoPeloId();
 
     void mostrarValorTotalDoPedido();
 
@@ -36,7 +39,11 @@ class gerenciadorSistema {
 
     void pagarPedido();
 
-    void SairDoPrograma();
+    void voltar();
+
+    void sairDoPrograma();
+
+    bool retornarSaidaDoProgama();
 };
 
 #endif

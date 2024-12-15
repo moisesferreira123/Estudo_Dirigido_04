@@ -8,7 +8,7 @@ class Catalogo{
   private:
     std::map<int, Produto> catalogo;
   public:
-    virtual void adicionarProduto(Produto produto, bool testeDesligado = true);
+    virtual bool adicionarProduto(Produto produto, bool testeDesligado = true);
 
     virtual std::map<int, Produto> listarProdutos(bool testeDesligado = true);
 

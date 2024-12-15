@@ -12,15 +12,15 @@ TEST(CenarioCompletoTeste, TesteDeIntegracao){
 
   EXPECT_CALL(mockcatalogo, adicionarProduto(produto1, ::testing::_))
     .Times(1)
-    .WillOnce(Return());
+    .WillOnce(Return(true));
 
   EXPECT_CALL(mockcatalogo, adicionarProduto(produto2,::testing::_))
     .Times(1)
-    .WillOnce(Return());
+    .WillOnce(Return(true));
 
   EXPECT_CALL(mockcatalogo, adicionarProduto(produto3, ::testing::_))
     .Times(1)
-    .WillOnce(Return());
+    .WillOnce(Return(true));
   
   // Configurando o mock para refletir dinamicamente as alterações no mapa.
   EXPECT_CALL(mockcatalogo, listarProdutos(testeDesligadoMock))
