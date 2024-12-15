@@ -9,8 +9,8 @@ void Catalogo::adicionarProduto(Produto produto, bool testeDesligado){
   bool conseguiuAdicionar = catalogo.insert({produto.obterId(),produto}).second;
   if(!conseguiuAdicionar){
     if(testeDesligado){
-      spdlog::error("ERRO: Não foi possível adicionar o novo produto ao catálogo. Id {} já existe no catálogo.", produto.obterId());
-      logger->error("ERRO: Não foi possível adicionar o novo produto ao catálogo. Id {} já existe no catálogo.", produto.obterId());
+      spdlog::error("Não foi possível adicionar o novo produto ao catálogo. Id {} já existe no catálogo.", produto.obterId());
+      logger->error("Não foi possível adicionar o novo produto ao catálogo. Id {} já existe no catálogo.", produto.obterId());
     }
   }else{
     if(testeDesligado){
@@ -33,8 +33,8 @@ Produto Catalogo::buscarProdutoPorId(int id, bool testeDesligado){
   auto produto = catalogo.find(id);
   if(produto == catalogo.end()){
     if(testeDesligado){
-      spdlog::error("ERRO: Esse produto não está presente no catálogo.");
-      logger->error("ERRO: Esse produto não está presente no catálogo.");
+      spdlog::error("Esse produto não está presente no catálogo.");
+      logger->error("Esse produto não está presente no catálogo.");
     }
     return Produto(-1,"Produto não encontrado",0);
   }else{

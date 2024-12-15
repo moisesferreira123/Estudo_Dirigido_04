@@ -14,6 +14,8 @@ class Pedido {
     Catalogo &catalogo;
 
   public:
+    Pedido() = default;
+    
     Pedido(std::string clienteC, Catalogo &catalogoC) : cliente(clienteC), catalogo(catalogoC) {}
 
     void adicionarProduto(Produto produto, bool testeDesligado = true);
